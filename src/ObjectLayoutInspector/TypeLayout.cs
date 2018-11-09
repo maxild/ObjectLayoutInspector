@@ -53,7 +53,7 @@ namespace ObjectLayoutInspector
                 .Where(fl => fl.FieldInfo.FieldType.IsValueType && !fl.FieldInfo.FieldType.IsPrimitive)
                 .Select(fl => GetLayout(fl.FieldInfo.FieldType, cache, includePaddings: true))
                 .Sum(tl => tl.Paddings);
-            
+
             Paddings = thisInstancePaddings + nestedPaddings;
 
             // Updating the cache.
@@ -115,11 +115,11 @@ namespace ObjectLayoutInspector
                 cache?.LayoutCache.TryAdd(type, result);
                 return result;
             }
-            catch (Exception e)
+            catch
             {
                 Console.WriteLine($"Failed to create an instance of type {type}");
                 throw;
-            }            
+            }
 
             TypeLayout DoGetLayout()
             {
